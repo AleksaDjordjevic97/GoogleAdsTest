@@ -1,5 +1,6 @@
 package com.aleksadjordjevic.adstest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,6 +28,8 @@ class MainActivity2 : AppCompatActivity()
 
         setupInitialUI()
 
+        MobileAds.initialize(this)
+
         initializeBannerAd()
 
         loadInterstitialAd()
@@ -34,7 +37,9 @@ class MainActivity2 : AppCompatActivity()
 
         loadRewardedAd()
         addRewardedAdsFullscreenCallback()
+
         binding.btnRewardAd.setOnClickListener { showRewardedAd() }
+        binding.surpriseCat.setOnClickListener { goToNativeAdsScreen() }
     }
 
     private fun setupInitialUI()
@@ -43,11 +48,11 @@ class MainActivity2 : AppCompatActivity()
         binding.txtClickForReward.visibility = View.VISIBLE
         binding.txtReward.visibility = View.INVISIBLE
         binding.surpriseCat.visibility = View.INVISIBLE
+        binding.txtClickForMain3.visibility = View.INVISIBLE
     }
 
     private fun initializeBannerAd()
     {
-        MobileAds.initialize(this)
         val adRequest = AdRequest.Builder().build()
         binding.adViewBanner2.loadAd(adRequest)
     }
@@ -152,12 +157,19 @@ class MainActivity2 : AppCompatActivity()
                 binding.txtClickForReward.visibility = View.INVISIBLE
                 binding.txtReward.visibility = View.VISIBLE
                 binding.surpriseCat.visibility = View.VISIBLE
+                binding.txtClickForMain3.visibility = View.VISIBLE
                 Log.d(TAG, "User earned the reward.")
             })
 
         }
         else
             Log.d(TAG, "The rewarded ad wasn't ready yet.")
+    }
+
+    private fun goToNativeAdsScreen()
+    {
+        val nativeAdsIntent = Intent(this,MainActivity3::class.java)
+        startActivity(nativeAdsIntent)
     }
 
 }

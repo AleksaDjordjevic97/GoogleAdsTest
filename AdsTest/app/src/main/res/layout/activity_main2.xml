@@ -67,4 +67,14 @@
         app:layout_constraintWidth_percent="0.33"
         android:visibility="invisible"/>
 
+    <TextView
+        android:id="@+id/txtClickForMain3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click on it to try out Native ads"
+        app:layout_constraintEnd_toEndOf="@+id/surpriseCat"
+        app:layout_constraintStart_toStartOf="@+id/surpriseCat"
+        app:layout_constraintTop_toBottomOf="@+id/surpriseCat"
+        android:visibility="invisible"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
